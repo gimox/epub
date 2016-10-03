@@ -2,11 +2,12 @@ var xml2js = require('xml2js');
 var xml2jsOptions = xml2js.defaults['0.1'];
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
-
+/*
 try {
     // zipfile is an optional dependency:
     var ZipFile = require("zipfile").ZipFile;
 } catch (err) {
+*/
     // Mock zipfile using pure-JS adm-zip:
     var AdmZip = require('adm-zip');
     
@@ -17,6 +18,8 @@ try {
         });
         this.count = this.names.length;
     };
+    
+    
     ZipFile.prototype.readFile = function(name, cb) {
         this.admZip.readFileAsync(this.admZip.getEntry(name), function(buffer, error) {
             // `error` is bogus right now, so let's just drop it.
@@ -24,7 +27,9 @@ try {
             return cb(null, buffer);
         });
     };
+/*
 }
+*/
 
 //TODO: Cache parsed data
 
